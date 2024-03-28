@@ -1,0 +1,7 @@
+{
+  "material-icon-theme.folders.associations": {
+    "_components": "Components",
+    "_service": "Api",
+    "(route)": "Routes"
+  }
+}
