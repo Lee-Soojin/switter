@@ -10,4 +10,11 @@ export const HomePageLayout = styled.div`
   height: 100vh;
   min-height: 100vh;
   background-color: #f6f6f6;
+  > div {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    height: 100%;
+    gap: 20px;
+  }
 `;
