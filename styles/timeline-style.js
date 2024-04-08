@@ -32,6 +32,48 @@ export const TweetItemBox = styled.div`
       border-radius: 50%;
     }
   }
+  > form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    width: auto;
+    flex: 1;
+    gap: 12px;
+    > textarea {
+      width: 100%;
+      height: auto;
+      border: none;
+      text-align: start;
+      resize: none;
+      color: #212121;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 120%;
+      padding: 8px;
+      &::placeholder {
+        color: #aaaaaa;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 120%;
+      }
+    }
+    > button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: auto;
+      height: 36px;
+      min-height: 36px;
+      padding: 0 16px;
+      border: none;
+      cursor: pointer;
+      background-color: #f46dfe;
+      border-radius: 20px;
+      font-size: 16px;
+      font-weight: 700;
+      color: #ffffff;
+    }
+  }
   > div:nth-child(2) {
     display: flex;
     flex-direction: column;
