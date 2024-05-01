@@ -1,9 +1,38 @@
 "use client";
 
+import { useRef } from "react";
 import Image from "next/image";
 import { TweetFormBox } from "@/styles/form-style";
-
+const apiURL = "http://localhost:8080";
 const TweetForm = () => {
+  const inputRef = useRef(null);
+
+  const uploadTweet = async (e) => {
+    e.preventDefault();
+
+    if (inputRef && inputRef.current && inputRef.current.value) {
+      try {
+        const response = await fetch(apiURL + "/tweets", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            username: "Yugyeom",
+            tweet: inputRef.current.value,
+          }),
+        });
+
+        const data = await response.json();
+        console.log(data);
+
+        e.target.submit();
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  };
+
   return (
     <TweetFormBox>
       <div>
@@ -23,8 +52,9 @@ const TweetForm = () => {
             rows="10"
             placeholder="무슨 일이 일어나고 있나요?"
             autoFocus={true}
+            ref={inputRef}
           ></textarea>
-          <button>업로드</button>
+          <button onClick={uploadTweet}>업로드</button>
         </form>
       </div>
     </TweetFormBox>
