@@ -1,20 +1,27 @@
 "use client";
 
-import { FollowerListBox, FollowerListItemBox } from "@/styles/follower-list";
 import Image from "next/image";
+import { FollowerListBox, FollowerListItemBox } from "@/styles/follower-list";
+
+const tempData = [
+  { isInFavorites: true },
+  { isInFavorites: false },
+  { isInFavorites: true },
+  { isInFavorites: false },
+  { isInFavorites: true },
+  { isInFavorites: false },
+  { isInFavorites: true },
+  { isInFavorites: false },
+];
 
 const FollowerList = () => {
   return (
     <FollowerListBox>
       <p>내 Switter 친구 목록</p>
       <ul>
-        <FollowerListItem data={{ isInFavorites: true }} />
-        <FollowerListItem data={{ isInFavorites: true }} />
-        <FollowerListItem data={{ isInFavorites: false }} />
-        <FollowerListItem data={{ isInFavorites: false }} />
-        <FollowerListItem data={{ isInFavorites: true }} />
-        <FollowerListItem data={{ isInFavorites: false }} />
-        <FollowerListItem data={{ isInFavorites: true }} />
+        {tempData.map((x) => (
+          <FollowerListItem data={x} key={Math.random()} />
+        ))}
       </ul>
     </FollowerListBox>
   );
