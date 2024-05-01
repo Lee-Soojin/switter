@@ -6,7 +6,34 @@ import { TweetItemBox } from "@/styles/timeline-style";
 const apiURL = "http://localhost:8080";
 
 const TweetItem = ({ data }) => {
+  const [isEditing, setIsEditing] = useState(false);
+  const [loading, setLoading] = useState(false);
   const textareaRef = useRef(null);
+
+  const updateTweet = () => {
+    if (
+      textareaRef &&
+      textareaRef.current &&
+      textareaRef.current.value &&
+      textareaRef.current.value.length > 0
+    ) {
+      fetch(apiURL + "/tweets/" + data.id, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ tweet: textareaRef.current.value }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+        })
+        .catch(console.error);
+    }
+  };
+
+  const deleteTweet = () => {};
+
   return (
     <TweetItemBox>
       <div>
