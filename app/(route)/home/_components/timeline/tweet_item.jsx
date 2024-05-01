@@ -1,27 +1,48 @@
 "use client";
 
-import { TweetItemBox } from "@/styles/timeline-style";
+import { useRef, useState } from "react";
 import Image from "next/image";
+import { TweetItemBox } from "@/styles/timeline-style";
+const apiURL = "http://localhost:8080";
 
 const TweetItem = ({ data }) => {
+  const textareaRef = useRef(null);
   return (
     <TweetItemBox>
       <div>
         <Image
-          src="https://images.unsplash.com/photo-1638643391904-9b551ba91eaa?q=80&w=2592&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          src="https://pbs.twimg.com/media/GHLH6fla0AAL0Es?format=jpg&name=900x900"
           width={40}
           height={40}
           alt="profile"
         />
       </div>
-      <div>
-        <p>{data.username}</p>
-        <p>{data.tweet}</p>
-      </div>
-      <div>
-        <button>수정</button>
-        <button>삭제</button>
-      </div>
+      {isEditing ? (
+        <form>
+          <textarea
+            name="tweet"
+            id="tweet"
+            cols="30"
+            rows="10"
+            placeholder="트윗을 완성해보세요."
+            defaultValue={data.tweet}
+            autoFocus={true}
+            ref={textareaRef}
+          ></textarea>
+          <button onClick={updateTweet}>업로드</button>
+        </form>
+      ) : (
+        <div>
+          <p>{data.username}</p>
+          <p>{data.tweet}</p>
+        </div>
+      )}
+      {!isEditing && (
+        <div>
+          <button onClick={() => setIsEditing(true)}>수정</button>
+          <button onClick={deleteTweet}>삭제</button>
+        </div>
+      )}
     </TweetItemBox>
   );
 };
