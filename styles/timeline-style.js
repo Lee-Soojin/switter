@@ -23,7 +23,10 @@ export const TweetItemBox = styled.div`
   background-color: inherit;
   cursor: pointer;
   &:hover {
-    > div:nth-child(3) {
+    > p.tweetItem__date {
+      display: none;
+    }
+    > div.tweetItem__actions {
       display: flex;
     }
   }
@@ -80,6 +83,7 @@ export const TweetItemBox = styled.div`
     flex: 1;
     width: auto;
     height: fit-content;
+    position: relative;
     > p {
       margin: 0;
     }
@@ -93,8 +97,23 @@ export const TweetItemBox = styled.div`
       font-weight: 500;
       line-height: 150%;
     }
+    > p:nth-child(3) {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+    }
   }
-  > div:nth-child(3) {
+  > p.tweetItem__date {
+    display: inline;
+    align-items: center;
+    width: fit-content;
+    height: fit-content;
+    margin: 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: #a9a9a9;
+  }
+  > div.tweetItem__actions {
     display: none;
     align-items: center;
     width: fit-content;
