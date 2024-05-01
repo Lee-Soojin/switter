@@ -32,7 +32,20 @@ const TweetItem = ({ data }) => {
     }
   };
 
-  const deleteTweet = () => {};
+  const deleteTweet = () => {
+    fetch(apiURL + "/tweets", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ id: data.id, username: data.username }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch(console.error);
+  };
 
   return (
     <TweetItemBox>
