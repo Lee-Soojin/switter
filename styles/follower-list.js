@@ -60,8 +60,8 @@ export const FollowerListItemBox = styled.li`
     cursor: pointer;
     margin-left: auto;
     border-radius: 20px;
-    background-color: ${(props) =>
-      props.isInFavorites ? "#EB4463" : "#000000"};
+    background-color: ${({ $isInFavorites }) =>
+      $isInFavorites ? "#EB4463" : "#000000"};
     font-size: 14px;
     font-weight: 700;
     line-height: 150%;
