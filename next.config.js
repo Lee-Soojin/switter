@@ -9,7 +9,14 @@ const nextConfig = {
     },
   },
   images: {
-    domains: ["images.unsplash.com"],
+    remotePatterns: [
+      {
+        hostname: "**images.unsplash.com",
+      },
+      {
+        hostname: "pbs.twimg.com",
+      },
+    ],
   },
 };
 
