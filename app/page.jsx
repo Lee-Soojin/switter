@@ -1,6 +1,7 @@
 "use client";
-import { StartPageLayout } from "@/styles/page-style";
+
 import Link from "next/link";
+import { StartPageLayout } from "@/styles/page-style";
 
 export default function Page() {
   return (
