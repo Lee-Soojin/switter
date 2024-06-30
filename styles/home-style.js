@@ -5,7 +5,7 @@ export const HomePageLayout = styled.div`
   flex-direction: row;
   justify-content: center;
   gap: 32px;
-  padding: 70px 0;
+  padding: 100px 0 70px 0;
   width: 100vw;
   min-width: 100vw;
   height: 100vh;
