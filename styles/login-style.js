@@ -117,3 +117,35 @@ export const LoginFormBox = styled.div`
   }
 `;
 
+export const LoginInputBox = styled.div`
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  height: fit-content;
+
+  > input {
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    width: 100%;
+    height: 54px;
+    min-height: 48px;
+    border-radius: 8px;
+    border: none;
+    background-color: #f1f1f1;
+    font-family: var(--main-font-family), sans-serif;
+    font-weight: 500;
+    font-size: 1.2rem;
+    color: #212121;
+    &:focus {
+      background-color: #ffffff;
+      border: 1px solid lightgray;
+    }
+    &::placeholder {
+      font-family: var(--main-font-family), sans-serif;
+      font-weight: 500;
+      font-size: 1.2rem;
+      color: #a8a8a8;
+    }
+  }
+`;
