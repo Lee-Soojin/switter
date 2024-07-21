@@ -11,21 +11,33 @@ export const HeaderBox = styled.div`
   left: 0%;
   gap: 20px;
   background-color: #ffffff;
-  > a {
+
+  > button {
+    justify-content: center;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    margin-left: auto;
+  }
+
+  > a,
+  > button {
     display: flex;
     align-items: center;
     height: 100%;
     text-decoration: none;
     font-family: var(--main-font-family), sans-serif;
     font-weight: 700;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     color: #212121;
   }
+
   > a:nth-child(1) {
     color: #eb4463;
     font-size: 1.6rem;
     letter-spacing: 0.1rem;
   }
+
   > a:last-child {
     margin-left: auto;
   }
