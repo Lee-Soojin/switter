@@ -15,6 +15,7 @@ export const TweetFormBox = styled.div`
     height: 100%;
     > img {
       border-radius: 50%;
+      object-fit: cover;
     }
   }
   > div:nth-child(2) {
