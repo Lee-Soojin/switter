@@ -6,8 +6,8 @@ import TokenStorage from "./db/token";
 import TweetService from "./service/tweets";
 import { AuthErrorEventBus, AuthProvider } from "./context/auth_context";
 import { TweetServiceProvider } from "./context/tweet_context";
-import socket from "socket.io-client";
 import StyledComponentsRegistry from "@/styles/registry";
+import Socket from "./service/socket";
 
 const baseURL = process.env.NEXT_PUBLIC_API_URL;
 const tokenStorage = new TokenStorage();
@@ -16,11 +16,7 @@ const httpClient = new HttpClient(baseURL, authErrorEventBus);
 const authService = new AuthService(httpClient, tokenStorage);
 const tweetService = new TweetService(httpClient, tokenStorage);
 
-export const socketIO = socket(baseURL);
-
-socketIO.on("connect_error", (error) => {
-  console.error("socket error", error);
-});
+export const socketIO = new Socket(baseURL, () => tokenStorage.getToken());
 
 export default function RootLayout({ children }) {
   return (
