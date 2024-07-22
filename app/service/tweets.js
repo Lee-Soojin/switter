@@ -1,10 +1,10 @@
 import { socketIO } from "../layout";
 
 export default class TweetService {
-  constructor(http, token) {
+  constructor(http, token, socket) {
     this.http = http;
     this.tokenStorage = token;
-    this.socket = socketIO;
+    this.socket = socket;
   }
 
   async getAllTweets() {
