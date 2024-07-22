@@ -1,6 +1,5 @@
 "use client";
 import { forwardRef, useEffect, useRef, useState } from "react";
-import { useRouter } from "next/router";
 import { LoginFormBox, LoginInputBox } from "@/styles/login-style";
 
 const LoginForm = ({ signUp, logIn }) => {
@@ -22,14 +21,11 @@ const LoginForm = ({ signUp, logIn }) => {
     return null;
   }
 
-  const confirm = () => {
+  const confirm = async () => {
     if (mode === "log in") {
-      logIn(idRef.current.value, passwordRef.current.value) //
-        .then((res) => {
-          // window.location.href = "/home";
-        });
+      logIn(idRef.current.value, passwordRef.current.value);
     } else {
-      signUp(
+      const data = await signUp(
         idRef.current.value,
         passwordRef.current.value,
         nameRef.current.value,
