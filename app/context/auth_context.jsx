@@ -13,18 +13,18 @@ import Header from "../(route)/home/_components/header";
 import LoginForm from "../(route)/login/components/login_form";
 import { LoginPageLayout } from "@/styles/login-style";
 
-const AuthContext = createContext(null);
+const AuthContext = createContext({});
 
 const contextRef = createRef();
 
 export const AuthProvider = ({ authService, authErrorEventBus, children }) => {
-  const [user, setUser] = useState(undefined);
+  const [user, setUser] = useState(null);
 
-  useImperativeHandle(contextRef, () => (user ? user.token : undefined));
+  useImperativeHandle(contextRef, () => (user ? user.token : null));
 
   useEffect(() => {
     authErrorEventBus.listen((err) => {
-      console.error(err);
+      console.log(err);
       setUser(undefined);
     });
   }, [authErrorEventBus]);
@@ -54,7 +54,7 @@ export const AuthProvider = ({ authService, authErrorEventBus, children }) => {
   );
 
   const logout = useCallback(
-    async () => authService.logout().then(() => setUser(undefined)),
+    async () => authService.logout().then(() => setUser(null)),
     [authService]
   );
 
