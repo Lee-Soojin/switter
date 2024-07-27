@@ -2,14 +2,15 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { useTweetService } from "@/app/context/tweet_context";
 import { TweetItemBox } from "@/styles/timeline-style";
-const apiURL = "http://localhost:8080";
 
 const TweetItem = ({ data }) => {
   const [uploadDate, setUploadDate] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
   const [loading, setLoading] = useState(false);
   const textareaRef = useRef(null);
+  const tweetService = useTweetService();
 
   useEffect(() => {
     let date = new Date(data.uploadDate);
@@ -26,29 +27,18 @@ const TweetItem = ({ data }) => {
       textareaRef.current.value &&
       textareaRef.current.value.length > 0
     ) {
-      fetch(apiURL + "/tweets/" + data.id, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ tweet: textareaRef.current.value }),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          console.log(data);
+      tweetService
+        .modifyTweet(data.id, textareaRef.current.value)
+        .then((res) => {
+          setIsEditing(false);
         })
         .catch(console.error);
     }
   };
 
-  const deleteTweet = () => {
-    fetch(apiURL + "/tweets", {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ id: data.id, username: data.username }),
-    })
+  const deleteThisTweet = () => {
+    tweetService
+      .deleteTweet(data.id, data.username)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -56,11 +46,19 @@ const TweetItem = ({ data }) => {
       .catch(console.error);
   };
 
+  const onClickUpdate = (e) => {
+    e.preventDefault();
+    updateTweet();
+  };
+
   return (
     <TweetItemBox>
       <div>
         <Image
-          src="https://pbs.twimg.com/media/GHLH6fla0AAL0Es?format=jpg&name=900x900"
+          src={
+            data.image ||
+            "https://pbs.twimg.com/media/GHLH6fla0AAL0Es?format=jpg&name=900x900"
+          }
           width={40}
           height={40}
           alt="profile"
@@ -78,7 +76,7 @@ const TweetItem = ({ data }) => {
             autoFocus={true}
             ref={textareaRef}
           ></textarea>
-          <button onClick={updateTweet}>업로드</button>
+          <button onClick={onClickUpdate}>업로드</button>
         </form>
       ) : (
         <div>
@@ -92,7 +90,7 @@ const TweetItem = ({ data }) => {
       {!isEditing && (
         <div className="tweetItem__actions">
           <button onClick={() => setIsEditing(true)}>수정</button>
-          <button onClick={deleteTweet}>삭제</button>
+          <button onClick={deleteThisTweet}>삭제</button>
         </div>
       )}
     </TweetItemBox>
