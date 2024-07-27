@@ -1,29 +1,40 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import TweetItem from "./tweet_item";
 import { TimelineBox } from "@/styles/timeline-style";
+import { useAuth } from "@/app/context/auth_context";
+import { socketIO } from "@/app/layout";
+import { useTweetService } from "@/app/context/tweet_context";
 const apiURL = "http://localhost:8080";
 
-const Timeline = () => {
+const Timeline = (props) => {
+  const { user } = useAuth();
   const [tweets, setTweets] = useState([]);
+  const tweetService = useTweetService();
+
+  const getTweets = useCallback(() => {
+    tweetService
+      .getAllTweets()
+      .then((tweets) => setTweets(tweets))
+      .catch(console.error);
+
+    const stopSync = tweetService.onSync((tweet) => onCreated(tweet));
+    return () => stopSync();
+  }, [user, setTweets]);
+
+  const onCreated = (tweet) => {
+    setTweets((tweets) => setTweets([...tweets, tweet]));
+  };
 
   useEffect(() => {
-    const getTweets = () => {
-      fetch(apiURL + "/tweets", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          setTweets(data.tweetList);
-        })
-        .catch(console.error);
-    };
     getTweets();
-  }, [setTweets]);
+  }, [getTweets]);
+
+  // socketIO.on("update", (message) => {
+  //   getTweets();
+  //   console.log(message);
+  // });
 
   return (
     <TimelineBox>
