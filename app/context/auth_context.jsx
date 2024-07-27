@@ -30,13 +30,7 @@ export const AuthProvider = ({ authService, authErrorEventBus, children }) => {
   }, [authErrorEventBus]);
 
   useEffect(() => {
-    authService
-      .me()
-      .then((res) => {
-        console.log("res", res);
-        setUser(res);
-      })
-      .catch(console.error);
+    authService.me().then(setUser).catch(console.error);
   }, [authService]);
 
   const signUp = useCallback(
@@ -89,6 +83,12 @@ export class AuthErrorEventBus {
 
   listen(callback) {
     this.callback = callback;
+  }
+
+  unlisten(callback) {
+    if (this.callback === callback) {
+      this.callback = null;
+    }
   }
 
   notify(error) {
