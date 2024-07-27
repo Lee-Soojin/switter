@@ -23,7 +23,7 @@ export default class TweetService {
   }
 
   async postTweet(username, tweet) {
-    return this.http.fetch(`/tweetes`, {
+    return this.http.fetch(`/tweets`, {
       method: "POST",
       body: {
         username,
