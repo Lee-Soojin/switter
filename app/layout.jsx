@@ -14,9 +14,8 @@ const tokenStorage = new TokenStorage();
 const authErrorEventBus = new AuthErrorEventBus();
 const httpClient = new HttpClient(baseURL, authErrorEventBus);
 const authService = new AuthService(httpClient, tokenStorage);
-const tweetService = new TweetService(httpClient, tokenStorage);
-
 export const socketIO = new Socket(baseURL, () => tokenStorage.getToken());
+const tweetService = new TweetService(httpClient, tokenStorage, socketIO);
 
 export default function RootLayout({ children }) {
   return (
