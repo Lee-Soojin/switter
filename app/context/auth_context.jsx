@@ -64,7 +64,10 @@ export const AuthProvider = ({ authService, authErrorEventBus, children }) => {
 
   if (user) {
     return (
-      <AuthContext.Provider value={context}>{children}</AuthContext.Provider>
+      <AuthContext.Provider value={context}>
+        <Header />
+        {children}
+      </AuthContext.Provider>
     );
   } else {
     return (
