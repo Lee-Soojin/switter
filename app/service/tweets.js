@@ -33,10 +33,18 @@ export default class TweetService {
     });
   }
 
-  async deleteTweet(id) {
+  async modifyTweet(id, tweet) {
+    return this.http.fetch(`/tweets/${id}`, {
+      method: "PUT",
+      body: JSON.stringify({ tweet }),
+      headers: this.getHeaders(),
+    });
+  }
+
+  async deleteTweet(id, username) {
     return this.http.fetch(`/tweets`, {
       method: "DELETE",
-      body: { id },
+      body: JSON.stringify({ id, username }),
       headers: this.getHeaders(),
     });
   }
@@ -49,6 +57,6 @@ export default class TweetService {
   }
 
   onSync(callback) {
-    return this.socket.onSync("tweets", callback);
+    return this.socket.onSync("update", callback);
   }
 }
