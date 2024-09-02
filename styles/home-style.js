@@ -18,12 +18,4 @@ export const HomePageLayout = styled.div`
     height: 100%;
     gap: 20px;
   }
-  > div.home__menuPanel,
-  > div.home__followerPanel {
-    display: flex;
-    flex-direction: column;
-    width: 300px;
-    height: 100%;
-    gap: 20px;
-  }
 `;
