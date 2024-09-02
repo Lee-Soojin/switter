@@ -5,10 +5,9 @@ import Image from "next/image";
 import { useAuth } from "@/app/context/auth_context";
 import { useTweetService } from "@/app/context/tweet_context";
 import { TweetFormBox } from "@/styles/form-style";
-const apiURL = "http://localhost:8080";
 
 const TweetForm = () => {
-  const { user } = useAuth();
+  const { _doc: user } = useAuth().user || {};
   const inputRef = useRef(null);
   const tweetService = useTweetService();
 
