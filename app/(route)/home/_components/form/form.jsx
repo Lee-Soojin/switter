@@ -11,17 +11,16 @@ const TweetForm = () => {
   const inputRef = useRef(null);
   const tweetService = useTweetService();
 
-  const uploadTweet = async (e) => {
+  const uploadTweet = (e) => {
     e.preventDefault();
 
-    try {
-      let text = inputRef?.current?.value;
-      const response = await tweetService.postTweet(text);
-      const data = await response.json();
-      if (data) inputRef.current.value = null;
-    } catch (err) {
-      console.error(err);
-    }
+    let text = inputRef?.current?.value;
+    tweetService
+      .postTweet(text)
+      .then(() => {
+        inputRef.current.value = null;
+      })
+      .catch(console.error);
   };
 
   return (
