@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import TweetItem from "./tweet_item";
 import { useTweetService } from "@/app/context/tweet_context";
+import TweetItem from "./tweet_item";
 import { TimelineBox } from "@/styles/timeline-style";
 
 const Timeline = (props) => {
@@ -26,7 +26,8 @@ const Timeline = (props) => {
 
   return (
     <TimelineBox>
-      {tweets && tweets.map((x) => <TweetItem key={x.id} data={x} />)}
+      {tweets &&
+        tweets.map((tweet) => <TweetItem key={tweet.id} data={tweet} />)}
     </TimelineBox>
   );
 };
