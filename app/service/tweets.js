@@ -22,12 +22,11 @@ export default class TweetService {
     });
   }
 
-  async postTweet(username, tweet) {
+  async postTweet(text) {
     return this.http.fetch(`/tweets`, {
       method: "POST",
       body: {
-        username,
-        tweet,
+        text: JSON.stringify(text),
       },
       headers: this.getHeaders(),
     });
