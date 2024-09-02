@@ -32,10 +32,10 @@ export default class TweetService {
     });
   }
 
-  async modifyTweet(id, tweet) {
-    return this.http.fetch(`/tweets/${id}`, {
+  async modifyTweet(id, text) {
+    return this.http.fetch(`/tweets`, {
       method: "PUT",
-      body: JSON.stringify({ tweet }),
+      body: JSON.stringify({ id, text }),
       headers: this.getHeaders(),
     });
   }
