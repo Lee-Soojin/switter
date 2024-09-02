@@ -1,47 +1,37 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import Image from "next/image";
 import { useTweetService } from "@/app/context/tweet_context";
 import { TweetItemBox } from "@/styles/timeline-style";
 
 const TweetItem = ({ data }) => {
-  const [uploadDate, setUploadDate] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
   const [loading, setLoading] = useState(false);
   const textareaRef = useRef(null);
   const tweetService = useTweetService();
 
-  useEffect(() => {
-    let date = new Date(data.uploadDate);
-    let month = date.getMonth() > 10 ? date.getMonth() : "0" + date.getMonth();
-    let day = date.getDate() > 10 ? date.getDate() : "0" + date.getDate();
-    if (data && data.uploadDate)
-      setUploadDate(`${date.getFullYear() + "." + month + "." + day}`);
-  }, [data, setUploadDate]);
-
   const updateTweet = () => {
-    if (
-      textareaRef &&
-      textareaRef.current &&
-      textareaRef.current.value &&
-      textareaRef.current.value.length > 0
-    ) {
+    let text = textareaRef?.current?.value;
+    if (text && text.length > 0) {
+      setLoading(true);
       tweetService
-        .modifyTweet(data.id, textareaRef.current.value)
+        .modifyTweet(data.id, text)
         .then((res) => {
           setIsEditing(false);
+          setLoading(false);
         })
         .catch(console.error);
     }
   };
 
   const deleteThisTweet = () => {
+    setLoading(true);
     tweetService
       .deleteTweet(data.id, data.username)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        setLoading(false);
       })
       .catch(console.error);
   };
@@ -51,12 +41,24 @@ const TweetItem = ({ data }) => {
     updateTweet();
   };
 
+  const formatDate = (dateVal) => {
+    let today = new Date();
+    let date = new Date(dateVal);
+
+    let days = Math.floor((today - date) / (1000 * 60 * 60 * 24));
+    let hours = Math.floor((today - date) / (1000 * 60 * 60));
+
+    if (days > 0) return `${days}일 전`;
+    else if (hours > 0) return `${hours}시간 전`;
+    else return `방금 전`;
+  };
+
   return (
     <TweetItemBox>
       <div>
         <Image
           src={
-            data.image ||
+            data.url ||
             "https://pbs.twimg.com/media/GHLH6fla0AAL0Es?format=jpg&name=900x900"
           }
           width={40}
@@ -72,7 +74,7 @@ const TweetItem = ({ data }) => {
             cols="30"
             rows="10"
             placeholder="트윗을 완성해보세요."
-            defaultValue={data.tweet}
+            defaultValue={data.text}
             autoFocus={true}
             ref={textareaRef}
           ></textarea>
@@ -80,12 +82,12 @@ const TweetItem = ({ data }) => {
         </form>
       ) : (
         <div>
-          <p>{data.username}</p>
-          <p>{data.tweet}</p>
+          <p>{data.name}</p>
+          <p>{data.text}</p>
         </div>
       )}
       {!isEditing && (
-        <p className="tweetItem__date">{uploadDate && uploadDate}</p>
+        <p className="tweetItem__date">{formatDate(data.updatedAt)}</p>
       )}
       {!isEditing && (
         <div className="tweetItem__actions">
