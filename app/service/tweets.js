@@ -25,9 +25,9 @@ export default class TweetService {
   async postTweet(text) {
     return this.http.fetch(`/tweets`, {
       method: "POST",
-      body: {
-        text: JSON.stringify(text),
-      },
+      body: JSON.stringify({
+        text,
+      }),
       headers: this.getHeaders(),
     });
   }
