@@ -57,55 +57,31 @@ export const LoginFormBox = styled.div`
     width: 600px;
     height: fit-content;
     border-radius: 0 10px 10px 10px;
-    padding: 40px 60px;
-    gap: 40px;
+    padding: 40px;
+    gap: 20px;
     > p {
       text-transform: uppercase;
       font-family: var(--main-font-family), sans-serif;
       font-weight: 700;
-      font-size: 2rem;
+      font-size: 1.6rem;
       color: #212121;
+      margin: 0;
     }
-    div {
+    > div {
       display: flex;
       flex-direction: column;
       align-items: center;
       width: 100%;
-      gap: 20px;
-      > input {
-        display: flex;
-        align-items: center;
-        padding: 0 12px;
-        width: 100%;
-        height: 54px;
-        min-height: 48px;
-        border-radius: 8px;
-        border: none;
-        background-color: #f1f1f1;
-        font-family: var(--main-font-family), sans-serif;
-        font-weight: 500;
-        font-size: 1.2rem;
-        color: #212121;
-        &:focus {
-          background-color: #ffffff;
-          border: 1px solid lightgray;
-        }
-        &::placeholder {
-          font-family: var(--main-font-family), sans-serif;
-          font-weight: 500;
-          font-size: 1.2rem;
-          color: #a8a8a8;
-        }
-      }
+      height: fit-content;
+      gap: 12px;
     }
     > button {
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      width: 100%;
-      height: 54px;
-      margin-top: 32px;
+      width: 80%;
+      height: 48px;
       border-radius: 8px;
       border: none;
       background-color: #eb4463;
@@ -113,6 +89,10 @@ export const LoginFormBox = styled.div`
       font-weight: 500;
       font-size: 1.2rem;
       color: #ffffff;
+      transition: all ease 0.2s;
+      &:hover {
+        transform: scale(1.02);
+      }
     }
   }
 `;
@@ -120,16 +100,15 @@ export const LoginFormBox = styled.div`
 export const LoginInputBox = styled.div`
   display: flex;
   align-items: center;
-  width: fit-content;
+  width: 80%;
   height: fit-content;
 
   > input {
     display: flex;
     align-items: center;
-    padding: 0 12px;
+    padding: 0 10px;
     width: 100%;
-    height: 54px;
-    min-height: 48px;
+    height: 40px;
     border-radius: 8px;
     border: none;
     background-color: #f1f1f1;
