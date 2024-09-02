@@ -24,7 +24,7 @@ export const AuthProvider = ({ authService, authErrorEventBus, children }) => {
 
   useEffect(() => {
     authErrorEventBus.listen((err) => {
-      console.log(err);
+      console.error(err);
       setUser(undefined);
     });
   }, [authErrorEventBus]);
