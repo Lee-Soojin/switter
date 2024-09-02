@@ -11,7 +11,6 @@ const LoginForm = ({ signUp, logIn }) => {
   const nameRef = useRef(null);
   const emailRef = useRef(null);
   const urlRef = useRef(null);
-  // const router = useRouter();
 
   useEffect(() => {
     setMounted(true);
@@ -25,7 +24,7 @@ const LoginForm = ({ signUp, logIn }) => {
     if (mode === "log in") {
       logIn(idRef.current.value, passwordRef.current.value);
     } else {
-      const data = await signUp(
+      signUp(
         idRef.current.value,
         passwordRef.current.value,
         nameRef.current.value,
