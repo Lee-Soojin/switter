@@ -1,15 +1,23 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { useAuth } from "@/app/context/auth_context";
 import { useTweetService } from "@/app/context/tweet_context";
 import { TweetItemBox } from "@/styles/timeline-style";
 
 const TweetItem = ({ data }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [isOwner, setIsOwner] = useState(false);
   const textareaRef = useRef(null);
   const tweetService = useTweetService();
+  const { _doc: user } = useAuth().user || {};
+
+  useEffect(() => {
+    if (user && data && user._id === data.userId) setIsOwner(true);
+    else setIsOwner(false);
+  }, [user, data, setIsOwner]);
 
   const updateTweet = () => {
     let text = textareaRef?.current?.value;
@@ -30,7 +38,9 @@ const TweetItem = ({ data }) => {
     tweetService
       .deleteTweet(data.id, data.username)
       .then((res) => res.json())
-      .then((data) => {
+      .then((res) => {
+        console.log(res);
+
         setLoading(false);
       })
       .catch(console.error);
@@ -54,7 +64,7 @@ const TweetItem = ({ data }) => {
   };
 
   return (
-    <TweetItemBox>
+    <TweetItemBox $isOwner={isOwner}>
       <div>
         <Image
           src={data.url || "/images/default_profile.png"}
@@ -86,7 +96,7 @@ const TweetItem = ({ data }) => {
       {!isEditing && (
         <p className="tweetItem__date">{formatDate(data.updatedAt)}</p>
       )}
-      {!isEditing && (
+      {!isEditing && user._id === data.userId && (
         <div className="tweetItem__actions">
           <button onClick={() => setIsEditing(true)}>수정</button>
           <button onClick={deleteThisTweet}>삭제</button>
