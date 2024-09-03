@@ -23,13 +23,15 @@ export default class TweetService {
   }
 
   async postTweet(text) {
-    return this.http.fetch(`/tweets`, {
+    const response = await this.http.fetch(`/tweets`, {
       method: "POST",
       body: JSON.stringify({
         text,
       }),
       headers: this.getHeaders(),
     });
+
+    if (response) return response;
   }
 
   async modifyTweet(id, text) {
