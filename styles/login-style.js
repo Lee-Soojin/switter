@@ -59,7 +59,7 @@ export const LoginFormBox = styled.div`
     border-radius: 0 10px 10px 10px;
     padding: 40px;
     gap: 20px;
-    > p {
+    p {
       text-transform: uppercase;
       font-family: var(--main-font-family), sans-serif;
       font-weight: 700;
@@ -67,7 +67,7 @@ export const LoginFormBox = styled.div`
       color: #212121;
       margin: 0;
     }
-    > div {
+    div {
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -75,7 +75,7 @@ export const LoginFormBox = styled.div`
       height: fit-content;
       gap: 12px;
     }
-    > button {
+    button {
       display: flex;
       align-items: center;
       justify-content: center;
@@ -103,7 +103,7 @@ export const LoginInputBox = styled.div`
   width: 80%;
   height: fit-content;
 
-  > input {
+  input {
     display: flex;
     align-items: center;
     padding: 0 10px;
