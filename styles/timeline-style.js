@@ -22,12 +22,13 @@ export const TweetItemBox = styled.div`
   border-bottom: 1px solid #d3d3d3;
   background-color: inherit;
   cursor: pointer;
+
   &:hover {
-    > p.tweetItem__date {
-      display: none;
+    p.tweetItem__date {
+      display: ${({ $isOwner }) => $isOwner && "none"};
     }
-    > div.tweetItem__actions {
-      display: flex;
+    div.tweetItem__actions {
+      display: ${({ $isOwner }) => $isOwner && "flex"};
     }
   }
   > div:nth-child(1) {
@@ -103,7 +104,7 @@ export const TweetItemBox = styled.div`
       right: 10px;
     }
   }
-  > p.tweetItem__date {
+  p.tweetItem__date {
     display: inline;
     align-items: center;
     width: fit-content;
@@ -113,7 +114,7 @@ export const TweetItemBox = styled.div`
     font-weight: 700;
     color: #a9a9a9;
   }
-  > div.tweetItem__actions {
+  div.tweetItem__actions {
     display: none;
     align-items: center;
     width: fit-content;
