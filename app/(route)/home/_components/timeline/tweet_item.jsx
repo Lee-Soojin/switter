@@ -57,10 +57,7 @@ const TweetItem = ({ data }) => {
     <TweetItemBox>
       <div>
         <Image
-          src={
-            data.url ||
-            "https://pbs.twimg.com/media/GHLH6fla0AAL0Es?format=jpg&name=900x900"
-          }
+          src={data.url || "/images/default_profile.png"}
           width={40}
           height={40}
           alt="profile"
