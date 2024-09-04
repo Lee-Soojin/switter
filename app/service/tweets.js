@@ -40,11 +40,14 @@ export default class TweetService {
     });
   }
 
-    return this.http.fetch(`/tweets`, {
+  async deleteTweet(id) {
+    const response = await this.http.fetch(`/tweets`, {
       method: "DELETE",
       body: JSON.stringify({ id }),
       headers: this.getHeaders(),
     });
+
+    if (response.ok) return response.status;
   }
 
   getHeaders() {
