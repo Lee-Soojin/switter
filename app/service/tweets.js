@@ -1,5 +1,3 @@
-import { socketIO } from "../layout";
-
 export default class TweetService {
   constructor(http, token, socket) {
     this.http = http;
@@ -42,10 +40,9 @@ export default class TweetService {
     });
   }
 
-  async deleteTweet(id, username) {
     return this.http.fetch(`/tweets`, {
       method: "DELETE",
-      body: JSON.stringify({ id, username }),
+      body: JSON.stringify({ id }),
       headers: this.getHeaders(),
     });
   }
