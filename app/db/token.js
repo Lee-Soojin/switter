@@ -2,12 +2,12 @@ const TOKEN = "token";
 
 export default class tokenStorage {
   saveToken(token) {
-    window.localStorage.setItem(TOKEN, token);
+    if (typeof window !== "undefined") localStorage.setItem(TOKEN, token);
   }
   getToken() {
-    return window.localStorage.getItem(TOKEN);
+    if (typeof window !== "undefined") return localStorage.getItem(TOKEN);
   }
   clearToken() {
-    window.localStorage.clear();
+    if (typeof window !== "undefined") localStorage.clear();
   }
 }
