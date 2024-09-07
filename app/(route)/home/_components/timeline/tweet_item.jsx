@@ -37,10 +37,7 @@ const TweetItem = ({ data }) => {
     setLoading(true);
     tweetService
       .deleteTweet(data.id, data.username)
-      .then((res) => res.json())
       .then((res) => {
-        console.log(res);
-
         setLoading(false);
       })
       .catch(console.error);
