@@ -41,13 +41,21 @@ export default class TweetService {
   }
 
   async deleteTweet(id) {
-    const response = await this.http.fetch(`/tweets`, {
-      method: "DELETE",
-      body: JSON.stringify({ id }),
-      headers: this.getHeaders(),
-    });
-
-    if (response.ok) return response.status;
+    try {
+      const response = await this.http.fetch(`/tweets`, {
+        method: "DELETE",
+        body: JSON.stringify({ id }),
+        headers: this.getHeaders(),
+      });
+      if (response.ok) {
+        const data = await response.json();
+        return data.message;
+      } else {
+        throw new Error(`Failed to delete: ${response.statusText}`);
+      }
+    } catch (error) {
+      throw error;
+    }
   }
 
   getHeaders() {
