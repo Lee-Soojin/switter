@@ -10,6 +10,7 @@ export const TimelineBox = styled.div`
   overflow-x: hidden;
   overflow-y: auto;
   scrollbar-width: thin;
+  scrollbar-color: var(--main-color) transparent;
 `;
 
 export const TweetItemBox = styled.div`
@@ -104,6 +105,7 @@ export const TweetItemBox = styled.div`
       right: 10px;
     }
   }
+
   p.tweetItem__date {
     display: inline;
     align-items: center;
@@ -114,6 +116,7 @@ export const TweetItemBox = styled.div`
     font-weight: 700;
     color: #a9a9a9;
   }
+
   div.tweetItem__actions {
     display: none;
     align-items: center;

@@ -58,7 +58,7 @@ export const TweetFormBox = styled.div`
         padding: 0 16px;
         border: none;
         cursor: pointer;
-        background-color: #f46dfe;
+        background-color: var(--main-color);
         border-radius: 20px;
         font-size: 16px;
         font-weight: 700;
