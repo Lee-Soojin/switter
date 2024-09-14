@@ -9,6 +9,10 @@ const GlobalStyle = createGlobalStyle`
     outline: none;
   }
 
+  :root {
+    --main-color: #f46dfe;
+  }
+
 
   #root {
     width: 100%;
