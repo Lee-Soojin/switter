@@ -32,7 +32,7 @@ export const TweetItemBox = styled.div`
       display: ${({ $isOwner }) => $isOwner && "flex"};
     }
   }
-  > div:nth-child(1) {
+  > a:nth-child(1) {
     > img {
       border-radius: 50%;
     }
