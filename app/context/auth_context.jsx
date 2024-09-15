@@ -52,14 +52,23 @@ export const AuthProvider = ({ authService, authErrorEventBus, children }) => {
     [authService]
   );
 
+  const getprofile = useCallback(
+    async (username) =>
+      authService.getProfile(username).then((user) => {
+        return user;
+      }),
+    [authService]
+  );
+
   const context = useMemo(
     () => ({
       user,
       signUp,
       login,
       logout,
+      getprofile,
     }),
-    [user, signUp, login, logout]
+    [user, signUp, login, logout, getprofile]
   );
 
   if (user) {
