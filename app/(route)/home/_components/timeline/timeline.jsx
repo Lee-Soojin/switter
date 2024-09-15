@@ -36,6 +36,9 @@ const Timeline = (props) => {
     };
 
     getTweetList();
+
+    let stopSync = tweetService.onSync(() => getTweetList());
+    return () => stopSync();
   }, [id, tweetService, setTweets, setLoading]);
 
   return (
