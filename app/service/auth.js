@@ -37,6 +37,17 @@ export default class AuthService {
     return data;
   }
 
+  async getProfile(id) {
+    const token = this.tokenStorage.getToken();
+    const data = await this.http.fetch(`/auth/profile/${id}`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return data;
+  }
+
   async logout() {
     return this.tokenStorage.clearToken();
   }
