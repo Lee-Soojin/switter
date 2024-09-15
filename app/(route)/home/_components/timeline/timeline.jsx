@@ -1,34 +1,46 @@
 "use client";
 
 import { Suspense, useEffect, useState } from "react";
-import { useTweetService } from "@/app/context/tweet_context";
+import { useParams } from "next/navigation";
 import TweetItem from "./tweet_item";
-import { TimelineBox } from "@/styles/timeline-style";
 import Loading from "@/app/loading";
+import { useTweetService } from "@/app/context/tweet_context";
+import { TimelineBox } from "@/styles/timeline-style";
 
 const Timeline = (props) => {
   const [loading, setLoading] = useState(false);
   const [tweets, setTweets] = useState([]);
   const tweetService = useTweetService();
+  const { id } = useParams();
 
   useEffect(() => {
     const getTweetList = () => {
       setLoading(true);
-      tweetService
-        .getAllTweets()
-        .then((tweets) => {
-          setTweets(tweets);
-          setTimeout(() => {
+      if (id) {
+        tweetService
+          .getTweets(id)
+          .then((res) => {
+            console.log(res);
+            setTweets(res);
             setLoading(false);
-          }, 3000);
-        })
-        .catch(console.error);
+          })
+          .catch(console.error);
+      } else {
+        tweetService
+          .getAllTweets()
+          .then((tweets) => {
+            setTweets(tweets);
+            setLoading(false);
+          })
+          .catch(console.error);
+      }
     };
+
     getTweetList();
 
-    let stopSync = tweetService.onSync(() => getTweetList());
-    return () => stopSync();
-  }, [tweetService]);
+    // let stopSync = tweetService.onSync(() => getTweetList());
+    // return () => stopSync();
+  }, [id, tweetService, setTweets, setLoading]);
 
   return (
     <TimelineBox>
