@@ -3,11 +3,12 @@ import { noto_sans } from "./fonts";
 import HttpClient from "./network/http";
 import AuthService from "./service/auth";
 import TokenStorage from "./db/token";
-import TweetService from "./service/tweets";
-import { AuthErrorEventBus, AuthProvider } from "./context/auth_context";
-import { TweetServiceProvider } from "./context/tweet_context";
-import StyledComponentsRegistry from "@/styles/registry";
 import Socket from "./service/socket";
+import TweetService from "./service/tweets";
+import { SvgSprites } from "@/svg/svg_sprites";
+import { TweetServiceProvider } from "./context/tweet_context";
+import { AuthErrorEventBus, AuthProvider } from "./context/auth_context";
+import StyledComponentsRegistry from "@/styles/registry";
 
 const baseURL = process.env.NEXT_PUBLIC_API_URL;
 const tokenStorage = new TokenStorage();
@@ -21,6 +22,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" translate="no" className={`${noto_sans.variable}`}>
       <body>
+        <SvgSprites />
         <StyledComponentsRegistry>
           <AuthProvider
             authService={authService}
