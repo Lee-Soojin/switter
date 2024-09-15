@@ -35,7 +35,7 @@ export const LoginFormBox = styled.div`
       padding: 14px 40px;
       font-family: var(--main-font-family), sans-serif;
       font-weight: 700;
-      font-size: 1.2rem;
+      font-size: 1.6rem;
       color: #212121;
     }
     > button:nth-child(1) {
@@ -49,6 +49,7 @@ export const LoginFormBox = styled.div`
         props.mode === "sign up" ? "#ffffff" : "#f1f1f1"};
     }
   }
+
   > div:nth-child(2) {
     display: flex;
     flex-direction: column;
@@ -63,7 +64,7 @@ export const LoginFormBox = styled.div`
       text-transform: uppercase;
       font-family: var(--main-font-family), sans-serif;
       font-weight: 700;
-      font-size: 1.6rem;
+      font-size: 2.4rem;
       color: #212121;
       margin: 0;
     }
@@ -75,6 +76,7 @@ export const LoginFormBox = styled.div`
       height: fit-content;
       gap: 12px;
     }
+
     button {
       display: flex;
       align-items: center;
@@ -86,8 +88,8 @@ export const LoginFormBox = styled.div`
       border: none;
       background-color: #eb4463;
       font-family: var(--main-font-family), sans-serif;
-      font-weight: 500;
-      font-size: 1.2rem;
+      font-weight: 700;
+      font-size: 1.8rem;
       color: #ffffff;
       transition: all ease 0.2s;
       &:hover {
@@ -114,7 +116,7 @@ export const LoginInputBox = styled.div`
     background-color: #f1f1f1;
     font-family: var(--main-font-family), sans-serif;
     font-weight: 500;
-    font-size: 1.2rem;
+    font-size: 1.6rem;
     color: #212121;
     &:focus {
       background-color: #ffffff;
@@ -123,7 +125,7 @@ export const LoginInputBox = styled.div`
     &::placeholder {
       font-family: var(--main-font-family), sans-serif;
       font-weight: 500;
-      font-size: 1.2rem;
+      font-size: 1.6rem;
       color: #a8a8a8;
     }
   }
