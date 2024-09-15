@@ -17,7 +17,7 @@ const Profile = ({ user, tweetList }) => {
       </div>
       <div>
         <Image
-          src={user?.url || ""}
+          src={user?.url || "/images/default_profile.png"}
           width={130}
           height={130}
           alt="user profile"
