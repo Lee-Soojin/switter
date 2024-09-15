@@ -18,6 +18,18 @@ const nextConfig = {
       },
     ],
   },
+  rules: {
+    test: /\.svg$/,
+    use: [
+      {
+        loader: "@svgr/webpack",
+        options: {
+          icon: true,
+          svgo: false,
+        },
+      },
+    ],
+  },
 };
 
 module.exports = nextConfig;
