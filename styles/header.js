@@ -28,13 +28,13 @@ export const HeaderBox = styled.div`
     text-decoration: none;
     font-family: var(--main-font-family), sans-serif;
     font-weight: 700;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     color: #212121;
   }
 
   > a:nth-child(1) {
     color: #eb4463;
-    font-size: 1.6rem;
+    font-size: 2rem;
     letter-spacing: 0.1rem;
   }
 
