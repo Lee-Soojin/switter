@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useAuth } from "@/app/context/auth_context";
 import { useTweetService } from "@/app/context/tweet_context";
 import { TweetItemBox } from "@/styles/timeline-style";
+import Link from "next/link";
 
 const TweetItem = ({ data }) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -62,14 +63,14 @@ const TweetItem = ({ data }) => {
 
   return (
     <TweetItemBox $isOwner={isOwner}>
-      <div>
+      <Link href={`/profile/${data.username}`}>
         <Image
           src={data.url || "/images/default_profile.png"}
           width={40}
           height={40}
           alt="profile"
         />
-      </div>
+      </Link>
       {isEditing ? (
         <form>
           <textarea
