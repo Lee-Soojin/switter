@@ -4,7 +4,7 @@ export const TweetFormBox = styled.div`
   display: flex;
   align-items: flex-start;
   padding: 30px 32px;
-  width: 540px;
+  width: 600px;
   height: 220px;
   gap: 16px;
   border-radius: 20px;

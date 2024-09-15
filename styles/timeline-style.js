@@ -3,14 +3,14 @@ import styled from "styled-components";
 export const TimelineBox = styled.div`
   display: flex;
   flex-direction: column;
-  width: 540px;
+  width: 600px;
   height: 500px;
   border-radius: 20px;
   background-color: #ffffff;
   overflow-x: hidden;
   overflow-y: auto;
   scrollbar-width: thin;
-  scrollbar-color: var(--main-color) transparent;
+  scrollbar-color: lightgray transparent;
 `;
 
 export const TweetItemBox = styled.div`
