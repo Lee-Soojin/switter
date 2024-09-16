@@ -7,7 +7,7 @@ import { useTweetService } from "@/app/context/tweet_context";
 import { TweetFormBox } from "@/styles/form-style";
 
 const TweetForm = () => {
-  const { _doc: user } = useAuth().user || {};
+  const { dataValues: user } = useAuth().user || {};
   const inputRef = useRef(null);
   const tweetService = useTweetService();
 
@@ -40,7 +40,7 @@ const TweetForm = () => {
             id=""
             cols="30"
             rows="10"
-            placeholder="무슨 일이 일어나고 있나요?"
+            placeholder="무슨 일이 일어나고 있나요? (3자 이상)"
             autoFocus={true}
             ref={inputRef}
           ></textarea>
