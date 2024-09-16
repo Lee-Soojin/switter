@@ -13,10 +13,10 @@ const TweetItem = ({ data }) => {
   const [isOwner, setIsOwner] = useState(false);
   const textareaRef = useRef(null);
   const tweetService = useTweetService();
-  const { _doc: user } = useAuth().user || {};
+  const { dataValues: user } = useAuth().user || {};
 
   useEffect(() => {
-    if (user && data && user._id === data.userId) setIsOwner(true);
+    if (user && data && user?.id === data.userId) setIsOwner(true);
     else setIsOwner(false);
   }, [user, data, setIsOwner]);
 
@@ -65,7 +65,7 @@ const TweetItem = ({ data }) => {
     <TweetItemBox $isOwner={isOwner}>
       <Link href={`/profile/${data.username}`}>
         <Image
-          src={data.url || "/images/default_profile.png"}
+          src={data?.url || "/images/default_profile.png"}
           width={40}
           height={40}
           alt="profile"
@@ -94,7 +94,7 @@ const TweetItem = ({ data }) => {
       {!isEditing && (
         <p className="tweetItem__date">{formatDate(data.updatedAt)}</p>
       )}
-      {!isEditing && user._id === data.userId && (
+      {!isEditing && user?.id === data.userId && (
         <div className="tweetItem__actions">
           <button onClick={() => setIsEditing(true)}>수정</button>
           <button onClick={deleteThisTweet}>삭제</button>

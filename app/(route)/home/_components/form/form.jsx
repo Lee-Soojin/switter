@@ -27,7 +27,7 @@ const TweetForm = () => {
     <TweetFormBox>
       <div>
         <Image
-          src={user.url || "/images/default_profile.png"}
+          src={user?.url || "/images/default_profile.png"}
           width={40}
           height={40}
           alt="profile"
