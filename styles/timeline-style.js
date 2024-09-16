@@ -35,8 +35,10 @@ export const TweetItemBox = styled.div`
   > a:nth-child(1) {
     > img {
       border-radius: 50%;
+      object-fit: cover;
     }
   }
+
   > form {
     display: flex;
     flex-direction: column;
