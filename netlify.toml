@@ -2,8 +2,5 @@
 publish = ".next"
 command = "npm run build"
 
-[build.environment]
-NEXT_PUBLIC_API_URL = "From netlify.toml (NEXT_PUBLIC_)"
-
 [[plugins]]
 package = "@netlify/plugin-nextjs"
